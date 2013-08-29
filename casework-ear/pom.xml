@@ -38,6 +38,7 @@
             <artifactId>casework-jpa</artifactId>
             <type>jar</type>
         </dependency>
+
     </dependencies>
 
     <build>

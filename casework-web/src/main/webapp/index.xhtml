@@ -3,6 +3,7 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/templates/default.xhtml">
     <ui:define name="content">
 
@@ -10,7 +11,7 @@
             <f:viewParam name="result" value="#{blogEntryListService.firstResult}"/>
         </f:metadata>
 
-
+        <p:editor/>
         <ui:repeat var="blogEntry" value="#{blogEntryListService.resultList}">
             <div style="padding-bottom: 10px;">
                 <h2>#{blogEntry.title}</h2>
@@ -22,6 +23,7 @@
                         <f:convertDateTime pattern="dd-MM-yyyy"/>
                     </h:outputText>
                 </div>
+                <p:editor/>
             </div>
 
             <div style="clear:both;">#{blogEntry.shortContent}</div>
