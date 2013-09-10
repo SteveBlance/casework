@@ -27,18 +27,6 @@
             <type>ejb</type>
         </dependency>
 
-        <dependency>
-            <groupId>com.codaconsultancy</groupId>
-            <artifactId>casework-bootstrap</artifactId>
-            <type>ejb</type>
-        </dependency>
-
-        <dependency>
-            <groupId>com.codaconsultancy</groupId>
-            <artifactId>casework-jpa</artifactId>
-            <type>jar</type>
-        </dependency>
-
     </dependencies>
 
     <build>

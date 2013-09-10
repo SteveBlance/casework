@@ -85,15 +85,6 @@
             <scope>provided</scope>
         </dependency>
 
-
-        <!-- Test scope dependencies -->
-        <dependency>
-            <groupId>com.codaconsultancy</groupId>
-            <artifactId>casework-jpa</artifactId>
-            <type>test-jar</type>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
     <build>

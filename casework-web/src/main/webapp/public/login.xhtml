@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="content">
+
+        <form method="post" action="j_security_check">
+            <h:panelGrid id="panel" columns="2" border="0">
+                <h:outputLabel value="Username"/><input type="text" name="j_username" size="25"/>
+                <h:outputLabel value="Password"/><input type="password" size="15" name="j_password"/>
+            </h:panelGrid>
+            <input type="submit" value="Login"/>
+        </form>
+
+    </ui:define>
+</ui:composition>

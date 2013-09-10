@@ -8,15 +8,15 @@ body {
 
 #container {
     margin: 0 auto;
-    padding: 5px 5px 5px 5px;
-    width: 600px;
+    padding: 0;
+    width: 1200px;
     background-color: #FFFFFF;
 }
 
 #header {
-    background: #FFFFFF url(#{request.contextPath}/resources/images/header.png) no-repeat;
-    height: 179px;
-    padding: 5px 5px 5px 5px;
+    background-color: #282e7f;
+    height: 45px;
+    padding: 0;
 }
 
 #footer {
@@ -25,3 +25,15 @@ body {
     color: #666666;
     font-size: 0.85em;
     padding: 3em 0 0 0;
+}
+
+#header-title {
+    height: 42px;
+    font-size: 2em;
+    color: #ffffff;
+    padding-left: 15px;
+}
+
+#content {
+    padding: 90px 20px 20px 20px;
+}

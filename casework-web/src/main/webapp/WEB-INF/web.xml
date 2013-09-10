@@ -13,19 +13,35 @@
 
     <error-page>
         <exception-type>javax.faces.application.ViewExpiredException</exception-type>
-        <location>/viewExpired.jsf</location>
+        <location>/public/viewExpired.jsf</location>
     </error-page>
 
     <error-page>
         <exception-type>java.lang.Exception</exception-type>
-        <location>/error.jsf</location>
+        <location>/public/error.jsf</location>
     </error-page>
 
     <error-page>
         <error-code>404</error-code>
-        <location>/index.jsf</location>
+        <location>/public/index.jsf</location>
     </error-page>
 
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Protected</web-resource-name>
+            <url-pattern>/protected/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>*</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/public/login.jsf</form-login-page>
+            <form-error-page>/public/error.jsf</form-error-page>
+        </form-login-config>
+    </login-config>
 
     <session-config>
         <session-timeout>20</session-timeout>
