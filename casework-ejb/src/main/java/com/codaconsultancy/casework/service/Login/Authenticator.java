@@ -1,6 +1,6 @@
 package com.codaconsultancy.casework.service.Login;
 
-import com.codaconsultancy.casework.model.user.dao.UserDao;
+import com.codaconsultancy.casework.model.user.dao.UserDAO;
 import com.codaconsultancy.casework.model.user.entity.User;
 
 import javax.enterprise.context.RequestScoped;
@@ -21,7 +21,7 @@ public class Authenticator implements Serializable {
     private Logger log;
 
     @Inject
-    private UserDao userDao;
+    private UserDAO userDAO;
 
     @Inject
     private Identity identity;
@@ -30,7 +30,7 @@ public class Authenticator implements Serializable {
     private String password;
 
     public boolean login() {
-        User user = userDao.findByUsername(username);
+        User user = userDAO.findByUsername(username);
 
         if (user != null && user.verifyPassword(password)) {
             identity.setLoggedIn(true);

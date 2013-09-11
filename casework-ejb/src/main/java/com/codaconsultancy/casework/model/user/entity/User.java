@@ -1,12 +1,14 @@
 package com.codaconsultancy.casework.model.user.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table( name = "USERS" )
-public class User {
+@Table(name = "USERS")
 
+public class User implements java.io.Serializable {
+
+    private long id;
     private String username;
     private String firstName;
     private String lastName;
@@ -20,6 +22,20 @@ public class User {
         return false;
     }
 
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
+    @NotNull
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @Column(unique = true)
+    @NotNull
     public String getUsername() {
         return username;
     }
@@ -28,6 +44,8 @@ public class User {
         this.username = username;
     }
 
+    @Column
+    @NotNull
     public String getFirstName() {
         return firstName;
     }
@@ -36,6 +54,8 @@ public class User {
         this.firstName = firstName;
     }
 
+    @Column
+    @NotNull
     public String getLastName() {
         return lastName;
     }
@@ -44,14 +64,21 @@ public class User {
         this.lastName = lastName;
     }
 
+    @Column
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        if (isValidPhoneNumber(phoneNumber)) {
+            this.phoneNumber = phoneNumber;
+        } else {
+            throw new IllegalArgumentException("Number '" + phoneNumber + "' is not valid");
+        }
     }
 
+    @Column
+    @NotNull
     public String getPassword() {
         return password;
     }
@@ -60,6 +87,7 @@ public class User {
         this.password = password;
     }
 
+    @Column
     public String getEmailAddress() {
         return emailAddress;
     }
@@ -68,11 +96,28 @@ public class User {
         this.emailAddress = emailAddress;
     }
 
+    @Column
+    @NotNull
     public void setActive(boolean isActive) {
         this.isActive = isActive;
     }
 
     public boolean isActive() {
         return isActive;
+    }
+
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        boolean isValidNumber = true;
+        String numericOnlyPhoneNumber = phoneNumber.replaceAll("[+-.() ]", "");
+        if (numericOnlyPhoneNumber.isEmpty()) {
+            isValidNumber = false;
+        } else {
+            try {
+                Long.parseLong(numericOnlyPhoneNumber);
+            } catch (NumberFormatException e) {
+                isValidNumber = false;
+            }
+        }
+        return isValidNumber;
     }
 }

@@ -48,6 +48,25 @@ public class TestUser {
         Assert.assertEquals("0121 888 999", user.getPhoneNumber());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testCantCreateAlphaPhoneNumber() {
+        User user = new User();
+        user.setPhoneNumber("BBB xx 999");
+    }
+
+    @Test
+    public void testValidPhoneNumbers() {
+        User user = new User();
+        user.setPhoneNumber("0121 888 999");
+        Assert.assertEquals("0121 888 999", user.getPhoneNumber());
+        user.setPhoneNumber("0121-888-999");
+        Assert.assertEquals("0121-888-999", user.getPhoneNumber());
+        user.setPhoneNumber("(+44) 121 888-999");
+        Assert.assertEquals("(+44) 121 888-999", user.getPhoneNumber());
+        user.setPhoneNumber("0121.888.999");
+        Assert.assertEquals("0121.888.999", user.getPhoneNumber());
+    }
+
     @Test
     public void testIsActive() {
         User user = new User();
