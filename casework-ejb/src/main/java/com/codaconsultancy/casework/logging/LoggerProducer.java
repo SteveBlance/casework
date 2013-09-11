@@ -1,4 +1,4 @@
-package com.codaconsultancy.logging;
+package com.codaconsultancy.casework.logging;
 
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
