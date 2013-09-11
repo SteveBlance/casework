@@ -3,7 +3,7 @@ package com.codaconsultancy.casework.model.user.entity;
 import junit.framework.Assert;
 import org.junit.Test;
 
-public class TestUser {
+public class UserTest {
 
     @Test
     public void testGetUsername() {
