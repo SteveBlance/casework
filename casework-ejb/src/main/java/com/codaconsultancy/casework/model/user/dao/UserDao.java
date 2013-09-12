@@ -4,8 +4,11 @@ import com.codaconsultancy.casework.model.common.BaseDAO;
 import com.codaconsultancy.casework.model.user.entity.User;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
-public class UserDAO extends BaseDAO {
+public class UserDAO extends BaseDAO<User> {
+
+    public static final String FIND_USER_BY_USERNAME = "from User u where u.username = :username";
 
     public UserDAO() {
         super(User.class);
@@ -16,6 +19,8 @@ public class UserDAO extends BaseDAO {
     }
 
     public User findByUsername(String username) {
-        return null;
+        Query query = entityManager.createQuery(FIND_USER_BY_USERNAME);
+        query.setParameter(":username", username);
+        return (User) query.getSingleResult();
     }
 }
