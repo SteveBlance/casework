@@ -41,6 +41,12 @@ public class UserTest {
         Assert.assertEquals("bill@mail.com", user.getEmailAddress());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetInvalidEmailAddress() {
+        User user = new User();
+        user.setEmailAddress("NotAnEmailAddress");
+    }
+
     @Test
     public void testGetPhoneNumber() {
         User user = new User();

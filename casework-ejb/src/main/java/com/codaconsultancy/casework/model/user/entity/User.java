@@ -1,11 +1,12 @@
 package com.codaconsultancy.casework.model.user.entity;
 
+import org.apache.commons.validator.routines.EmailValidator;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "USERS")
-
 public class User implements java.io.Serializable {
 
     private long id;
@@ -93,7 +94,12 @@ public class User implements java.io.Serializable {
     }
 
     public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+        if (EmailValidator.getInstance().isValid(emailAddress)) {
+            this.emailAddress = emailAddress;
+        } else {
+            throw new IllegalArgumentException("Email address '" + emailAddress + "' is not valid");
+        }
+
     }
 
     @Column
