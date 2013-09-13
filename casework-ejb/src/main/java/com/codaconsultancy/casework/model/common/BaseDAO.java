@@ -22,7 +22,7 @@ public abstract class BaseDAO<T> {
     }
 
     public long countAll() {
-        final StringBuffer queryString = new StringBuffer(
+        final StringBuilder queryString = new StringBuilder(
                 "SELECT count(o) from ");
 
         queryString.append(entityClass.getSimpleName()).append(" o ");

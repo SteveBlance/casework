@@ -1,5 +1,6 @@
 package com.codaconsultancy.casework.model.user.entity;
 
+import com.codaconsultancy.casework.dto.user.UserDTO;
 import junit.framework.Assert;
 import org.junit.Test;
 
@@ -79,6 +80,28 @@ public class UserTest {
         Assert.assertFalse(user.isActive());
         user.setActive(true);
         Assert.assertTrue(user.isActive());
+    }
+
+    @Test
+    public void testUserToDTO() {
+        User user = new User();
+        user.setId(99L);
+        user.setUsername("jimmychow");
+        user.setEmailAddress("jim@maily.co.uk");
+        user.setFirstName("Jimmy");
+        user.setLastName("Chow");
+        user.setActive(true);
+        user.setPhoneNumber("01383711999");
+        user.setPassword("s9wtkdhafiu7vbliuwvhlbe");
+        UserDTO userDTO = user.toDTO();
+        Assert.assertTrue(userDTO.isActive());
+        Assert.assertEquals(user.getId(), userDTO.getId());
+        Assert.assertEquals(user.getUsername(), userDTO.getUsername());
+        Assert.assertEquals(user.getEmailAddress(), userDTO.getEmailAddress());
+        Assert.assertEquals(user.getFirstName(), userDTO.getFirstName());
+        Assert.assertEquals(user.getLastName(), userDTO.getLastName());
+        Assert.assertEquals(user.getPassword(), userDTO.getPassword());
+        Assert.assertEquals(user.getPhoneNumber(), userDTO.getPhoneNumber());
     }
 
 }

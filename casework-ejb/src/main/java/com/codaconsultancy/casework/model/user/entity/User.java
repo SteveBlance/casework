@@ -1,9 +1,13 @@
 package com.codaconsultancy.casework.model.user.entity;
 
+import com.codaconsultancy.casework.dto.user.UserDTO;
 import org.apache.commons.validator.routines.EmailValidator;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name = "USERS")
@@ -20,6 +24,7 @@ public class User implements java.io.Serializable {
 
     //TODO: get rid
     public boolean verifyPassword(String password) {
+
         return false;
     }
 
@@ -125,5 +130,10 @@ public class User implements java.io.Serializable {
             }
         }
         return isValidNumber;
+    }
+
+    public UserDTO toDTO() {
+        Mapper mapper = new DozerBeanMapper();
+        return mapper.map(this, UserDTO.class);
     }
 }
