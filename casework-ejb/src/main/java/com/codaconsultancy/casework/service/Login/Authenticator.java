@@ -2,6 +2,7 @@ package com.codaconsultancy.casework.service.Login;
 
 import com.codaconsultancy.casework.model.user.dao.UserDAO;
 import com.codaconsultancy.casework.model.user.entity.User;
+import org.apache.log4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -9,16 +10,14 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
-import java.util.logging.Logger;
 
 @Named
 @RequestScoped
 public class Authenticator implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private final static org.apache.log4j.Logger LOGGER = Logger.getLogger(Authenticator.class);
 
-    @Inject
-    private Logger log;
 
     @Inject
     private UserDAO userDAO;
@@ -42,7 +41,7 @@ public class Authenticator implements Serializable {
     }
 
     public boolean logout() {
-        log.info("logout current user");
+        LOGGER.info("logout current user");
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
                 .getExternalContext().getSession(false);
         if (session != null) {

@@ -17,7 +17,7 @@ public class AdministrationService implements Serializable {
     @Inject
     UserDAO userDAO;
 
-    private final static Logger LOGGER = Logger.getLogger(AdministrationService.class.getName());
+    private final static Logger LOGGER = Logger.getLogger(AdministrationService.class);
 
     public UserDTO getUser(String username) {
         LOGGER.info("Finding user: " + username);
