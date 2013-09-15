@@ -25,4 +25,5 @@ public class UserDAO extends BaseDAO<User> {
         query.setParameter(":username", username);
         return (User) query.getSingleResult();
     }
+
 }

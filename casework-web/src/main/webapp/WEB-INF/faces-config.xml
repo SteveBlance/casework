@@ -25,6 +25,17 @@
             <to-view-id>/protected/index.xhtml</to-view-id>
             <redirect include-view-params="false"/>
         </navigation-case>
+
+
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/protected/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{navigationController.goToCreateUserPage}</from-action>
+            <from-outcome>createUser</from-outcome>
+            <to-view-id>/protected/createUser.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
 </faces-config>

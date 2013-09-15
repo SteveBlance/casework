@@ -30,7 +30,8 @@
 
                     <p:submenu label="Admin" icon="ui-icon-gear">
                         <p:submenu label="Users" icon="ui-icon-refresh">
-                            <p:menuitem value="Add" actionListener="#{menuBean.save}" icon="ui-icon-disk"
+                            <p:menuitem value="Add" action="#{navigationController.goToCreateUserPage}"
+                                        icon="ui-icon-disk"
                                         update="messages"/>
                             <p:menuitem value="Update" actionListener="#{menuBean.update}"
                                         icon="ui-icon-arrowrefresh-1-w" update="messages"/>
@@ -52,7 +53,7 @@
                         </p:submenu>
                     </p:submenu>
 
-                    <p:menuitem value="Logout" url="http://www.bbc.co.uk" icon="ui-icon-close"/>
+                    <p:menuitem value="Logout" action="#{authenticator.logout()}" icon="ui-icon-close"/>
 
                     <!--<f:facet name="options">-->
                     <!--<p:inputText style="margin-right:10px"/>-->

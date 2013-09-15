@@ -50,7 +50,7 @@ public class User implements java.io.Serializable {
         this.username = username;
     }
 
-    @Column
+    @Column(name = "FIRST_NAME")
     @NotNull
     public String getFirstName() {
         return firstName;
@@ -60,7 +60,7 @@ public class User implements java.io.Serializable {
         this.firstName = firstName;
     }
 
-    @Column
+    @Column(name = "LAST_NAME")
     @NotNull
     public String getLastName() {
         return lastName;
@@ -70,7 +70,7 @@ public class User implements java.io.Serializable {
         this.lastName = lastName;
     }
 
-    @Column
+    @Column(name = "PHONE_NUMBER")
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -93,7 +93,7 @@ public class User implements java.io.Serializable {
         this.password = password;
     }
 
-    @Column
+    @Column(name = "EMAIL_ADDRESS")
     public String getEmailAddress() {
         return emailAddress;
     }
@@ -119,14 +119,16 @@ public class User implements java.io.Serializable {
 
     private boolean isValidPhoneNumber(String phoneNumber) {
         boolean isValidNumber = true;
-        String numericOnlyPhoneNumber = phoneNumber.replaceAll("[+-.() ]", "");
-        if (numericOnlyPhoneNumber.isEmpty()) {
-            isValidNumber = false;
-        } else {
-            try {
-                Long.parseLong(numericOnlyPhoneNumber);
-            } catch (NumberFormatException e) {
+        if (null != phoneNumber) {
+            String numericOnlyPhoneNumber = phoneNumber.replaceAll("[+-.() ]", "");
+            if (numericOnlyPhoneNumber.isEmpty()) {
                 isValidNumber = false;
+            } else {
+                try {
+                    Long.parseLong(numericOnlyPhoneNumber);
+                } catch (NumberFormatException e) {
+                    isValidNumber = false;
+                }
             }
         }
         return isValidNumber;

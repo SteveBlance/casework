@@ -9,6 +9,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Named
 @Stateless
@@ -24,4 +26,15 @@ public class AdministrationService implements Serializable {
         User user = userDAO.findByUsername(username);
         return user.toDTO();
     }
+
+    public List<UserDTO> getAllUsers() {
+        LOGGER.info("Finding all users");
+        List<User> users = userDAO.findAll();
+        List<UserDTO> allUsers = new ArrayList<UserDTO>();
+        for (User user : users) {
+            allUsers.add(user.toDTO());
+        }
+        return allUsers;
+    }
+
 }

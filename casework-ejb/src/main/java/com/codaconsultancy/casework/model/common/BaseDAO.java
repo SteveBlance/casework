@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 public abstract class BaseDAO<T> {
 
@@ -19,6 +20,15 @@ public abstract class BaseDAO<T> {
     public BaseDAO(Class<T> entityClass, EntityManager entityManager) {
         this.entityClass = entityClass;
         this.entityManager = entityManager;
+    }
+
+    public List findAll() {
+        final StringBuilder queryString = new StringBuilder(
+                "SELECT o from ");
+        queryString.append(entityClass.getSimpleName()).append(" o ");
+
+        final Query query = entityManager.createQuery(queryString.toString());
+        return query.getResultList();
     }
 
     public long countAll() {
