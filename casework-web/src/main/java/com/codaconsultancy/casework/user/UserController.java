@@ -23,4 +23,6 @@ public class UserController {
         userModel.setAllUsers(users);
         return userModel.getAllUsers();
     }
+
+
 }

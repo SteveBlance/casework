@@ -37,4 +37,9 @@ public class AdministrationService implements Serializable {
         return allUsers;
     }
 
+    public void addNewUser(UserDTO userDTO) {
+        LOGGER.info("Adding user: " + userDTO.getUsername());
+        userDAO.create(userDTO.toUser());
+    }
+
 }

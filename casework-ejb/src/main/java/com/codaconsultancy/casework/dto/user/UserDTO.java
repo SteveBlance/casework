@@ -1,5 +1,9 @@
 package com.codaconsultancy.casework.dto.user;
 
+import com.codaconsultancy.casework.model.user.entity.User;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
+
 public class UserDTO {
 
     private long id;
@@ -73,5 +77,10 @@ public class UserDTO {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public User toUser() {
+        Mapper mapper = new DozerBeanMapper();
+        return mapper.map(this, User.class);
     }
 }
