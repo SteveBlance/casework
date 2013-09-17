@@ -40,6 +40,15 @@ public class UserControllerTest extends BaseUnitTest {
         Assert.assertEquals(3, retrievedUsers.size());
     }
 
+    @Test
+    public void testAddNewUser() {
+        UserDTO userDTO = newUserDTO("jim");
+        when(userModel.getUser()).thenReturn(userDTO);
+        userController.addNewUser();
+        verify(userModel, times(1)).getUser();
+        verify(administrationService, times(1)).addNewUser(userDTO);
+    }
+
     private UserDTO newUserDTO(String username) {
         UserDTO userDTO1 = new UserDTO();
         userDTO1.setUsername(username);

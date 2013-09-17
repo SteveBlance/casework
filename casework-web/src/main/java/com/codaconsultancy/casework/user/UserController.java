@@ -25,4 +25,8 @@ public class UserController {
     }
 
 
+    public void addNewUser() {
+        UserDTO newUser = userModel.getUser();
+        administrationService.addNewUser(newUser);
+    }
 }
