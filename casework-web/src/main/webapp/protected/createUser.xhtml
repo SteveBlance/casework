@@ -6,29 +6,52 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 template="/WEB-INF/templates/default.xhtml">
     <ui:define name="content">
-        <p:dataTable var="user" value="#{userController.allUsers}">
-            <f:facet name="header">
-                All users
-            </f:facet>
-            <p:column headerText="Username">
-                <h:outputText value="#{user.username}"/>
-            </p:column>
-            <p:column headerText="First name">
-                <h:outputText value="#{user.firstName}"/>
-            </p:column>
-            <p:column headerText="Last name">
-                <h:outputText value="#{user.lastName}"/>
-            </p:column>
-            <p:column headerText="Telephone">
-                <h:outputText value="#{user.phoneNumber}"/>
-            </p:column>
-            <p:column headerText="Email">
-                <h:outputText value="#{user.emailAddress}"/>
-            </p:column>
-        </p:dataTable>
-        <br/>
-        <p:button value="Create" title="User"/>
+        <p:dialog header="Enter FirstName" widgetVar="dlg" resizable="false" modal="true" dynamic="true">
+            <h:outputText value="bbb" title="nnn"/>
+        </p:dialog>
+        <h:form id="addUserForm">
 
+            <p:dataTable var="user" value="#{userController.allUsers}">
+                <f:facet name="header">
+                    All users
+                </f:facet>
+                <p:column headerText="Username">
+                    <h:outputText value="#{user.username}"/>
+                </p:column>
+                <p:column headerText="First name">
+                    <h:outputText value="#{user.firstName}"/>
+                </p:column>
+                <p:column headerText="Last name">
+                    <h:outputText value="#{user.lastName}"/>
+                </p:column>
+                <p:column headerText="Telephone">
+                    <h:outputText value="#{user.phoneNumber}"/>
+                </p:column>
+                <p:column headerText="Email">
+                    <h:outputText value="#{user.emailAddress}"/>
+                </p:column>
+            </p:dataTable>
+
+            <br/>
+            <h:panelGrid columns="1" cellpadding="5">
+                <p:commandButton id="basic" value="Basic" onclick="dlg1.show();" type="button"/>
+
+                <p:commandButton id="modalDialogButton" value="Modal" onclick="dlg2.show();" type="button"/>
+
+                <p:commandButton id="effectsDialogButton" value="Effects" onclick="dlg3.show();" type="button"/>
+            </h:panelGrid>
+        </h:form>
+        <p:dialog id="basicDialog" header="Basic Dialog" widgetVar="dlg1">
+            <h:outputText value="Resistance to PrimeFaces is futile!"/>
+        </p:dialog>
+
+        <p:dialog id="modalDialog" header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
+            <h:outputText value="This is a Modal Dialog."/>
+        </p:dialog>
+
+        <p:dialog header="Effects" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">
+            <h:outputText value="This dialog has nice effects."/>
+        </p:dialog>
 
     </ui:define>
 </ui:composition>
