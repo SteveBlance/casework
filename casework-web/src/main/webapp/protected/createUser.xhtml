@@ -38,16 +38,8 @@
 
 
             <p:dialog id="addUserDialog" header="Add User" widgetVar="addUserPopUp" modal="true" dynamic="true"
-                      height="400" closable="true">
-                <!--
-    private String username;
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-    private String password;
-    private String emailAddress;
-    private boolean isActive;
-                -->
+                      height="330" closable="true">
+
                 <p:panelGrid columns="2">
                     <h:outputText value="Username:"/>
                     <h:inputText value="${userController.userModel.user.username}"/>
