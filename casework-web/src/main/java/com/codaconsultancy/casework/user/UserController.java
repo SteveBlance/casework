@@ -13,6 +13,7 @@ import java.util.List;
 public class UserController {
 
     @Inject
+    private
     UserModel userModel;
 
     @Inject
@@ -24,9 +25,16 @@ public class UserController {
         return userModel.getAllUsers();
     }
 
-
     public void addNewUser() {
         UserDTO newUser = userModel.getUser();
         administrationService.addNewUser(newUser);
+    }
+
+    public UserModel getUserModel() {
+        return userModel;
+    }
+
+    public void setUserModel(UserModel userModel) {
+        this.userModel = userModel;
     }
 }

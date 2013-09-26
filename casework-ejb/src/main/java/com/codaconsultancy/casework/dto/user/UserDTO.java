@@ -12,6 +12,7 @@ public class UserDTO {
     private String lastName;
     private String phoneNumber;
     private String password;
+    private String confirmPassword;
     private String emailAddress;
     private boolean isActive;
 
@@ -61,6 +62,14 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public String getEmailAddress() {

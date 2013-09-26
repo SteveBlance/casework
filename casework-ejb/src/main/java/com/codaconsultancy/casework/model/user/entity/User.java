@@ -7,6 +7,7 @@ import org.dozer.Mapper;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 
 @Entity
@@ -21,6 +22,9 @@ public class User implements java.io.Serializable {
     private String password;
     private String emailAddress;
     private boolean isActive;
+    private String salt;
+    private Date dateCreated;
+    private Date lastModified;
 
     //TODO: get rid
     public boolean verifyPassword(String password) {
@@ -29,7 +33,7 @@ public class User implements java.io.Serializable {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true)
     @NotNull
     public long getId() {
@@ -104,17 +108,46 @@ public class User implements java.io.Serializable {
         } else {
             throw new IllegalArgumentException("Email address '" + emailAddress + "' is not valid");
         }
-
     }
 
-    @Column
-    @NotNull
     public void setActive(boolean isActive) {
         this.isActive = isActive;
     }
 
+    @Column(name = "ACTIVE")
+    @NotNull
     public boolean isActive() {
         return isActive;
+    }
+
+    @Column(name = "SALT")
+    @NotNull
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    @Column(name = "DATE_CREATED")
+    @NotNull
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    @Column(name = "LAST_MODIFIED")
+    @NotNull
+    public Date getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
     }
 
     private boolean isValidPhoneNumber(String phoneNumber) {

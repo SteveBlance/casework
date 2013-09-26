@@ -7,7 +7,7 @@ import java.util.List;
 public class UserModel {
 
     private List<UserDTO> allUsers;
-    private UserDTO user;
+    private UserDTO user = new UserDTO();
 
     public void setAllUsers(List<UserDTO> allUsers) {
         this.allUsers = allUsers;

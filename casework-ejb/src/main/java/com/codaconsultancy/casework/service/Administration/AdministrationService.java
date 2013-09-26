@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Named
@@ -39,7 +40,13 @@ public class AdministrationService implements Serializable {
 
     public void addNewUser(UserDTO userDTO) {
         LOGGER.info("Adding user: " + userDTO.getUsername());
-        userDAO.create(userDTO.toUser());
+        User user = userDTO.toUser();
+        //TODO: properly implement salting
+        user.setSalt("salty_todo:");
+        Date date = new Date();
+        user.setDateCreated(date);
+        user.setLastModified(date);
+        userDAO.create(user);
     }
 
 }

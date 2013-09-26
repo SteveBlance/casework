@@ -10,6 +10,8 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import java.util.Date;
+
 import static org.mockito.Mockito.*;
 
 public class AdministrationServiceTest extends BaseUnitTest {
@@ -42,6 +44,11 @@ public class AdministrationServiceTest extends BaseUnitTest {
         Assert.assertEquals(user.getUsername(), createdUser.getUsername());
         Assert.assertEquals(user.getFirstName(), createdUser.getFirstName());
         Assert.assertEquals(user.getLastName(), createdUser.getLastName());
+        Assert.assertEquals("salty_todo:", createdUser.getSalt());
+        Assert.assertNotNull(createdUser.getDateCreated());
+        Assert.assertTrue(createdUser.getDateCreated() instanceof Date);
+        Assert.assertNotNull(createdUser.getLastModified());
+        Assert.assertTrue(createdUser.getLastModified() instanceof Date);
 
     }
 

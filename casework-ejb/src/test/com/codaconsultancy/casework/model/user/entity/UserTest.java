@@ -4,6 +4,8 @@ import com.codaconsultancy.casework.dto.user.UserDTO;
 import junit.framework.Assert;
 import org.junit.Test;
 
+import java.util.Date;
+
 public class UserTest {
 
     @Test
@@ -40,6 +42,29 @@ public class UserTest {
         User user = new User();
         user.setEmailAddress("bill@mail.com");
         Assert.assertEquals("bill@mail.com", user.getEmailAddress());
+    }
+
+    @Test
+    public void testGetSalt() {
+        User user = new User();
+        user.setSalt("paris");
+        Assert.assertEquals("paris", user.getSalt());
+    }
+
+    @Test
+    public void testDateCreated() {
+        User user = new User();
+        Date date = new Date();
+        user.setDateCreated(date);
+        Assert.assertEquals(date, user.getDateCreated());
+    }
+
+    @Test
+    public void testLastModified() {
+        User user = new User();
+        Date date = new Date();
+        user.setLastModified(date);
+        Assert.assertEquals(date, user.getLastModified());
     }
 
     @Test(expected = IllegalArgumentException.class)
