@@ -33,7 +33,7 @@
             </p:dataTable>
 
             <br/>
-            <p:commandButton id="modalDialogButton" value="Modal" action="#{navigationController.showAddUserPopUp}"
+            <p:commandButton id="addUserButton" value="Add User" action="#{navigationController.showAddUserPopUp}"
                              update="addUserDialog"/>
 
 
@@ -43,6 +43,9 @@
                     <h:outputText value="Username:"/>
                     <h:inputText value=" "/>
                 </p:panelGrid>
+                <br/>
+                <p:commandButton id="saveUserButton" value="Save" action="#{navigationController.hideAddUserPopUp}"/>
+
             </p:dialog>
         </h:form>
     </ui:define>
