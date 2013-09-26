@@ -63,12 +63,10 @@
                     <h:inputSecret value="${userController.userModel.user.password}"/>
                     <h:outputText value="Confirm password:"/>
                     <h:inputSecret value="${userController.userModel.user.confirmPassword}"/>
-
-                    <p:commandButton id="saveUserButton" value="Save" action="#{userController.addNewUser}"
-                                     oncomplete="#{navigationController.hideAddUserPopUp}"/>
-
                 </p:panelGrid>
                 <br/>
+                <h:commandButton id="saveUserButton" value="Save" action="#{userController.addNewUser}"
+                                 oncomplete="#{navigationController.hideAddUserPopUp}"/>
 
             </p:dialog>
         </h:form>
