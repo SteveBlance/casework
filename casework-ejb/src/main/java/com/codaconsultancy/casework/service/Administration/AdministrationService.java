@@ -54,6 +54,10 @@ public class AdministrationService implements Serializable {
         userDAO.create(user);
     }
 
+    public User updateUser(UserDTO userDTO) {
+        return userDAO.update(userDTO.toUser());
+    }
+
     private String encrypt(String password) {
         String encryptedPassword = "";
         try {

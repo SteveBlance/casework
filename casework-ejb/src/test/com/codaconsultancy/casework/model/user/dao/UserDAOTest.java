@@ -44,4 +44,16 @@ public class UserDAOTest extends BaseUnitTest {
         Assert.assertEquals(testUser.getFirstName(), foundUser.getFirstName());
         Assert.assertEquals(testUser.getLastName(), foundUser.getLastName());
     }
+
+    @Test
+    public void testAddUser() {
+        userDAO.create(testUser);
+        verify(entityManager, times(1)).persist(testUser);
+    }
+
+    @Test
+    public void testUpdateUser() {
+        userDAO.update(testUser);
+        verify(entityManager, times(1)).merge(testUser);
+    }
 }

@@ -10,7 +10,9 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
@@ -24,6 +26,21 @@ public class AdministrationServiceTest extends BaseUnitTest {
     @Mock
     UserDAO userDAO;
 
+    @Test
+    public void testGetAllUsers() {
+        List allUsers = allUsers();
+        when(userDAO.findAll()).thenReturn(allUsers);
+        List<UserDTO> retrievedUsers = service.getAllUsers();
+        Assert.assertEquals(3, retrievedUsers.size());
+    }
+
+    private List allUsers() {
+        List<User> users = new ArrayList<User>();
+        users.add(newUser("bobm", "Bob", "Martin", "qwerty"));
+        users.add(newUser("ronj", "Ron", "Jeffries", "ccc"));
+        users.add(newUser("andyh", "Andy", "Hunt", "pragmatic"));
+        return users;
+    }
 
     @Test
     public void testGetUser() {
@@ -53,6 +70,17 @@ public class AdministrationServiceTest extends BaseUnitTest {
         Assert.assertTrue(createdUser.getLastModified() instanceof Date);
         Assert.assertThat("unencrypted-pwd", not(equalTo(createdUser.getPassword())));
         Assert.assertTrue(createdUser.isActive());
+    }
+
+    @Test
+    public void testUpdateUser() {
+        User user = newUser("trevh", "Trevor", "Harris", "unencrypted-pwd");
+        User updatedUser = service.updateUser(user.toDTO());
+        ArgumentCaptor<User> userArg = ArgumentCaptor.forClass(User.class);
+        verify(userDAO, times(1)).update(userArg.capture());
+        User passedUser = (User) userArg.getValue();
+        Assert.assertEquals(user.getUsername(), passedUser.getUsername());
+        Assert.assertEquals("Trevor", passedUser.getFirstName());
     }
 
     private User newUser(String username, String firstName, String lastName, String password) {
