@@ -37,4 +37,8 @@ public class UserController {
     public void setUserModel(UserModel userModel) {
         this.userModel = userModel;
     }
+
+    public void updateUser() {
+        administrationService.updateUser(userModel.getUser());
+    }
 }

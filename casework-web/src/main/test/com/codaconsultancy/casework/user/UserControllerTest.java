@@ -49,6 +49,15 @@ public class UserControllerTest extends BaseUnitTest {
         verify(administrationService, times(1)).addNewUser(userDTO);
     }
 
+    @Test
+    public void testUpdateUser() {
+        UserDTO userDTO = newUserDTO("bob");
+        when(userModel.getUser()).thenReturn(userDTO);
+        userController.updateUser();
+        verify(userModel, times(1)).getUser();
+        verify(administrationService, times(1)).updateUser(userDTO);
+    }
+
     private UserDTO newUserDTO(String username) {
         UserDTO userDTO1 = new UserDTO();
         userDTO1.setUsername(username);
