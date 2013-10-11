@@ -7,8 +7,13 @@
                 template="/WEB-INF/templates/default.xhtml">
     <ui:define name="content">
         <h:form id="addUserForm">
-
-            <p:dataTable var="user" value="#{userController.allUsers}">
+            <p:contextMenu for="users">
+                <p:menuitem value="Edit" update="users" icon="ui-icon-gear"
+                            action="#{navigationController.showAddUserPopUp}"/>
+                <p:menuitem value="Delete" update="users" icon="ui-icon-trash"
+                            action="#{navigationController.showAddUserPopUp}"/>
+            </p:contextMenu>
+            <p:dataTable id="users" var="user" value="#{userController.allUsers}">
                 <f:facet name="header">
                     All users
                 </f:facet>
