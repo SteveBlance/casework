@@ -36,9 +36,9 @@ public class AdministrationServiceTest extends BaseUnitTest {
 
     private List allUsers() {
         List<User> users = new ArrayList<User>();
-        users.add(newUser("bobm", "Bob", "Martin", "qwerty"));
-        users.add(newUser("ronj", "Ron", "Jeffries", "ccc"));
-        users.add(newUser("andyh", "Andy", "Hunt", "pragmatic"));
+        users.add(newUser("bobm", "Bob", "Martin", "qwerty", true));
+        users.add(newUser("ronj", "Ron", "Jeffries", "ccc", true));
+        users.add(newUser("andyh", "Andy", "Hunt", "pragmatic", true));
         return users;
     }
 
@@ -55,7 +55,7 @@ public class AdministrationServiceTest extends BaseUnitTest {
 
     @Test
     public void testAddNewUser() {
-        User user = newUser("gregh", "Greg", "Harris", "unencrypted-pwd");
+        User user = newUser("gregh", "Greg", "Harris", "unencrypted-pwd", true);
         service.addNewUser(user.toDTO());
         ArgumentCaptor<User> userArg = ArgumentCaptor.forClass(User.class);
         verify(userDAO, times(1)).create(userArg.capture());
@@ -74,22 +74,38 @@ public class AdministrationServiceTest extends BaseUnitTest {
 
     @Test
     public void testUpdateUser() {
-        User user = newUser("trevh", "Trevor", "Harris", "unencrypted-pwd");
-        User updatedUser = service.updateUser(user.toDTO());
+        User user = newUser("trevh", "Trevor", "Harris", "unencrypted-pwd", true);
+        user.setPasswordChanged(true);
+        service.updateUser(user.toDTO());
         ArgumentCaptor<User> userArg = ArgumentCaptor.forClass(User.class);
         verify(userDAO, times(1)).update(userArg.capture());
         User passedUser = (User) userArg.getValue();
         Assert.assertEquals(user.getUsername(), passedUser.getUsername());
         Assert.assertEquals("Trevor", passedUser.getFirstName());
+        Assert.assertEquals(PasswordEncryptor.encrypt("unencrypted-pwd"), passedUser.getPassword());
     }
 
-    private User newUser(String username, String firstName, String lastName, String password) {
+    @Test
+    public void testDeleteUser() {
+        User user = newUser("trevh", "Trevor", "Harris", "unencrypted-pwd", true);
+        Assert.assertTrue(user.isActive());
+
+        service.deleteUser(user.toDTO());
+        ArgumentCaptor<User> userArg = ArgumentCaptor.forClass(User.class);
+        verify(userDAO, times(1)).update(userArg.capture());
+        User passedUser = (User) userArg.getValue();
+        Assert.assertEquals(user.getUsername(), passedUser.getUsername());
+        Assert.assertEquals("Trevor", passedUser.getFirstName());
+        Assert.assertFalse(passedUser.isActive());
+    }
+
+    private User newUser(String username, String firstName, String lastName, String password, boolean active) {
         User user = new User();
         user.setUsername(username);
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setPhoneNumber("0139 990 0011");
-        user.setActive(true);
+        user.setActive(active);
         user.setPassword(password);
         user.setEmailAddress("info@nothing.com");
         return user;

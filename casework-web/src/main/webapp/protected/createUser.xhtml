@@ -11,7 +11,7 @@
                 <p:menuitem value="Edit" update="users" icon="ui-icon-gear"
                             action="#{navigationController.showAddUserPopUp}"/>
                 <p:menuitem value="Delete" update="users" icon="ui-icon-trash"
-                            action="#{navigationController.showAddUserPopUp}"/>
+                            action="#{userController.deleteUser}"/>
             </p:contextMenu>
             <p:dataTable id="users" var="user" value="#{userController.allUsers}">
                 <f:facet name="header">

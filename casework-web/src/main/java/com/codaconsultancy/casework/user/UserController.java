@@ -41,4 +41,8 @@ public class UserController {
     public void updateUser() {
         administrationService.updateUser(userModel.getUser());
     }
+
+    public void deleteUser() {
+        administrationService.deleteUser(userModel.getUser());
+    }
 }

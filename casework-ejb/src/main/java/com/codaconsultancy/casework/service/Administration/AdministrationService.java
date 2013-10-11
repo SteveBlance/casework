@@ -9,8 +9,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,46 +46,25 @@ public class AdministrationService implements Serializable {
         Date date = new Date();
         user.setDateCreated(date);
         user.setLastModified(date);
-        String encryptedPassword = encrypt(userDTO.getPassword());
+        String encryptedPassword = PasswordEncryptor.encrypt(userDTO.getPassword());
         user.setPassword(encryptedPassword);
         user.setActive(true);
         userDAO.create(user);
     }
 
     public User updateUser(UserDTO userDTO) {
-        return userDAO.update(userDTO.toUser());
-    }
-
-    private String encrypt(String password) {
-        String encryptedPassword = "";
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA1");
-            digest.reset();
-            digest.update(password.getBytes());
-            encryptedPassword = convertToHex(digest.digest());
-
-        } catch (NoSuchAlgorithmException e) {
-            LOGGER.error("NoSuchAlgorithmException SHA1");
+        User user = userDTO.toUser();
+        if (user.isPasswordChanged()) {
+            System.out.println("changed!!!");
+            String encryptedPwd = PasswordEncryptor.encrypt(user.getPassword());
+            user.setPassword(encryptedPwd);
         }
-        return encryptedPassword;
+        return userDAO.update(user);
     }
 
-    private String convertToHex(byte[] data) {
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < data.length; i++) {
-            if (i % 4 == 0 && i != 0) {
-                builder.append("");
-            }
-            int x = (int) data[i];
-            if (x < 0) {
-                x += 256;
-            }
-            if (x < 16) {
-                builder.append("0");
-            }
-            builder.append(Integer.toString(x, 16));
-        }
-        return builder.toString();
-    }
 
+    public User deleteUser(UserDTO user) {
+        user.setActive(false);
+        return updateUser(user);
+    }
 }

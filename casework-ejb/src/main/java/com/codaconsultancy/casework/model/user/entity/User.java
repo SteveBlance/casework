@@ -25,6 +25,7 @@ public class User implements java.io.Serializable {
     private String salt;
     private Date dateCreated;
     private Date lastModified;
+    private boolean passwordChanged;
 
     //TODO: get rid
     public boolean verifyPassword(String password) {
@@ -170,5 +171,14 @@ public class User implements java.io.Serializable {
     public UserDTO toDTO() {
         Mapper mapper = new DozerBeanMapper();
         return mapper.map(this, UserDTO.class);
+    }
+
+    public boolean isPasswordChanged() {
+        return passwordChanged;
+    }
+
+
+    public void setPasswordChanged(boolean passwordChanged) {
+        this.passwordChanged = passwordChanged;
     }
 }

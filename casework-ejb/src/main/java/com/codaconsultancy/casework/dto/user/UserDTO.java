@@ -15,6 +15,7 @@ public class UserDTO {
     private String confirmPassword;
     private String emailAddress;
     private boolean isActive;
+    private boolean passwordChanged;
 
     public long getId() {
         return id;
@@ -86,6 +87,16 @@ public class UserDTO {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+
+    public boolean isPasswordChanged() {
+        return passwordChanged;
+    }
+
+
+    public void setPasswordChanged(boolean passwordChanged) {
+        this.passwordChanged = passwordChanged;
     }
 
     public User toUser() {
