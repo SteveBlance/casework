@@ -13,7 +13,8 @@
                 <p:menuitem value="Delete" update="users" icon="ui-icon-trash"
                             action="#{userController.deleteUser}"/>
             </p:contextMenu>
-            <p:dataTable id="users" var="user" value="#{userController.allUsers}">
+            <p:dataTable id="users" var="user" value="#{userController.allUsers}" rowKey="#{user.id}"
+                         selection="#{userController.userModel.user}" selectionMode="single">
                 <f:facet name="header">
                     All users
                 </f:facet>

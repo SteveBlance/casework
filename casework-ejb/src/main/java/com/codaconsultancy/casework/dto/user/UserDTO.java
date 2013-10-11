@@ -4,6 +4,8 @@ import com.codaconsultancy.casework.model.user.entity.User;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
+import java.util.Date;
+
 public class UserDTO {
 
     private long id;
@@ -16,6 +18,9 @@ public class UserDTO {
     private String emailAddress;
     private boolean isActive;
     private boolean passwordChanged;
+    private String salt;
+    private Date dateCreated;
+    private Date lastModified;
 
     public long getId() {
         return id;
@@ -99,8 +104,33 @@ public class UserDTO {
         this.passwordChanged = passwordChanged;
     }
 
+
     public User toUser() {
         Mapper mapper = new DozerBeanMapper();
         return mapper.map(this, User.class);
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public Date getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
     }
 }

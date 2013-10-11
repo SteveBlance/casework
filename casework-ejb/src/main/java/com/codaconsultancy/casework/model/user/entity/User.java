@@ -173,6 +173,7 @@ public class User implements java.io.Serializable {
         return mapper.map(this, UserDTO.class);
     }
 
+    @Transient
     public boolean isPasswordChanged() {
         return passwordChanged;
     }

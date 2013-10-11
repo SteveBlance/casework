@@ -30,11 +30,11 @@ public class UserControllerTest extends BaseUnitTest {
         users.add(newUserDTO("bob"));
         users.add(newUserDTO("jane"));
         users.add(newUserDTO("fred"));
-        when(administrationService.getAllUsers()).thenReturn(users);
+        when(administrationService.getAllActiveUsers()).thenReturn(users);
         when(userModel.getAllUsers()).thenReturn(users);
 
         List<UserDTO> retrievedUsers = userController.getAllUsers();
-        verify(administrationService, times(1)).getAllUsers();
+        verify(administrationService, times(1)).getAllActiveUsers();
         verify(userModel, times(1)).setAllUsers(users);
         verify(userModel, times(1)).getAllUsers();
         Assert.assertEquals(3, retrievedUsers.size());

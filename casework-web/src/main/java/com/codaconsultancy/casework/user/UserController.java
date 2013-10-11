@@ -20,7 +20,7 @@ public class UserController {
     AdministrationService administrationService;
 
     public List<UserDTO> getAllUsers() {
-        List<UserDTO> users = administrationService.getAllUsers();
+        List<UserDTO> users = administrationService.getAllActiveUsers();
         userModel.setAllUsers(users);
         return userModel.getAllUsers();
     }

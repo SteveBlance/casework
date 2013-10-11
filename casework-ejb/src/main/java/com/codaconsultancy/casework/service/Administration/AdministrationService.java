@@ -28,12 +28,14 @@ public class AdministrationService implements Serializable {
         return user.toDTO();
     }
 
-    public List<UserDTO> getAllUsers() {
+    public List<UserDTO> getAllActiveUsers() {
         LOGGER.info("Finding all users");
         List<User> users = userDAO.findAll();
         List<UserDTO> allUsers = new ArrayList<UserDTO>();
         for (User user : users) {
-            allUsers.add(user.toDTO());
+            if (user.isActive()) {
+                allUsers.add(user.toDTO());
+            }
         }
         return allUsers;
     }
@@ -55,7 +57,6 @@ public class AdministrationService implements Serializable {
     public User updateUser(UserDTO userDTO) {
         User user = userDTO.toUser();
         if (user.isPasswordChanged()) {
-            System.out.println("changed!!!");
             String encryptedPwd = PasswordEncryptor.encrypt(user.getPassword());
             user.setPassword(encryptedPwd);
         }

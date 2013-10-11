@@ -27,10 +27,10 @@ public class AdministrationServiceTest extends BaseUnitTest {
     UserDAO userDAO;
 
     @Test
-    public void testGetAllUsers() {
+    public void testGetAllActiveUsers() {
         List allUsers = allUsers();
         when(userDAO.findAll()).thenReturn(allUsers);
-        List<UserDTO> retrievedUsers = service.getAllUsers();
+        List<UserDTO> retrievedUsers = service.getAllActiveUsers();
         Assert.assertEquals(3, retrievedUsers.size());
     }
 
@@ -39,6 +39,7 @@ public class AdministrationServiceTest extends BaseUnitTest {
         users.add(newUser("bobm", "Bob", "Martin", "qwerty", true));
         users.add(newUser("ronj", "Ron", "Jeffries", "ccc", true));
         users.add(newUser("andyh", "Andy", "Hunt", "pragmatic", true));
+        users.add(newUser("bad-andy", "Andy", "Bad", "stuff", false));
         return users;
     }
 

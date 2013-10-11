@@ -22,7 +22,7 @@ public abstract class BaseDAO<T> {
         this.entityManager = entityManager;
     }
 
-    public List findAll() {
+    public List<T> findAll() {
         final StringBuilder queryString = new StringBuilder(
                 "SELECT o from ");
         queryString.append(entityClass.getSimpleName()).append(" o ");
