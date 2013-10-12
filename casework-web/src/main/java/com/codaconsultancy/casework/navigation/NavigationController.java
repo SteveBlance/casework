@@ -14,8 +14,9 @@ public class NavigationController {
     private static final String CREATE_USER = "createUser";
     private static final Logger LOGGER = Logger.getLogger(NavigationController.class);
     private static final String ADD_USER_POPUP = "addUserPopUp";
-    private static final Object SHOWING = "Showing ";
-    private static final Object HIDING = "Hiding ";
+    private static final String EDIT_USER_POPUP = "editUserPopUp";
+    private static final String SHOWING = "Showing ";
+    private static final String HIDING = "Hiding ";
 
     public String goToCreateUserPage() {
         LOGGER.info(NAVIGATING_TO + CREATE_USER);
@@ -30,6 +31,16 @@ public class NavigationController {
     public void hideAddUserPopUp() {
         LOGGER.info(HIDING + ADD_USER_POPUP);
         RequestContext.getCurrentInstance().execute(ADD_USER_POPUP + ".hide()");
+    }
+
+    public void showEditUserPopUp() {
+        LOGGER.info(SHOWING + EDIT_USER_POPUP);
+        RequestContext.getCurrentInstance().execute(EDIT_USER_POPUP + ".show()");
+    }
+
+    public void hideEditUserPopUp() {
+        LOGGER.info(HIDING + EDIT_USER_POPUP);
+        RequestContext.getCurrentInstance().execute(EDIT_USER_POPUP + ".hide()");
     }
 
 }

@@ -37,11 +37,12 @@
 
             <br/>
             <p:commandButton id="addUserButton" value="Add User" actionListener="#{userController.prepUser()}"
-                             action="#{navigationController.showAddUserPopUp}"
-                             update="addUserPopupForm"/>
+                             action="#{navigationController.showEditUserPopUp}"
+                             update="editUserPopupForm"/>
 
 
             <ui:include src="addUserPopup.xhtml"/>
+            <ui:include src="editUserPopup.xhtml"/>
         </h:form>
     </ui:define>
 </ui:composition>

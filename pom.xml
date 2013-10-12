@@ -190,11 +190,20 @@
                 <plugin>
                     <groupId>org.jboss.as.plugins</groupId>
                     <artifactId>jboss-as-maven-plugin</artifactId>
-                    <version>7.1.0.Beta1b</version>
                     <inherited>true</inherited>
+                    <version>7.4.Final</version>
                     <configuration>
                         <skip>true</skip>
+                        <port>10199</port>
                     </configuration>
+                    <executions>
+                        <execution>
+                            <phase>install</phase>
+                            <goals>
+                                <goal>deploy</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
 
                 <plugin>
