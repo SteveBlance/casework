@@ -36,7 +36,8 @@
             </p:dataTable>
 
             <br/>
-            <p:commandButton id="addUserButton" value="Add User" action="#{navigationController.showAddUserPopUp}"
+            <p:commandButton id="addUserButton" value="Add User" actionListener="#{userController.prepUser()}"
+                             action="#{navigationController.showAddUserPopUp}"
                              update="addUserPopupForm"/>
 
 

@@ -19,6 +19,8 @@ public class UserController {
     @Inject
     AdministrationService administrationService;
 
+    private UserDTO selectedUser;
+
     public List<UserDTO> getAllUsers() {
         List<UserDTO> users = administrationService.getAllActiveUsers();
         userModel.setAllUsers(users);
@@ -44,5 +46,18 @@ public class UserController {
 
     public void deleteUser() {
         administrationService.deleteUser(userModel.getUser());
+    }
+
+
+    public UserDTO getSelectedUser() {
+        return selectedUser;
+    }
+
+    public void setSelectedUser(UserDTO selectedUser) {
+        this.selectedUser = selectedUser;
+    }
+
+    public void prepUser() {
+        userModel.setUser(new UserDTO());
     }
 }
