@@ -1,4 +1,4 @@
-package com.codaconsultancy.casework.service.Login;
+package com.codaconsultancy.casework.service.login;
 
 import javax.inject.Qualifier;
 import java.lang.annotation.ElementType;

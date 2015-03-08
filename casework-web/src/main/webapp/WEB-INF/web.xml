@@ -52,7 +52,7 @@
         <auth-method>FORM</auth-method>
         <form-login-config>
             <form-login-page>/public/login.jsf</form-login-page>
-            <form-error-page>/public/error.jsf</form-error-page>
+            <form-error-page>/public/login.jsf</form-error-page>
         </form-login-config>
     </login-config>
 

@@ -1,4 +1,4 @@
-package com.codaconsultancy.casework.service.Administration;
+package com.codaconsultancy.casework.service.administration;
 
 import com.codaconsultancy.casework.dto.user.UserDTO;
 import com.codaconsultancy.casework.model.user.dao.UserDAO;

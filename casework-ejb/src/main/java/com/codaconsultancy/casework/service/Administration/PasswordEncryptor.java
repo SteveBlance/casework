@@ -1,4 +1,4 @@
-package com.codaconsultancy.casework.service.Administration;
+package com.codaconsultancy.casework.service.administration;
 
 import org.apache.log4j.Logger;
 

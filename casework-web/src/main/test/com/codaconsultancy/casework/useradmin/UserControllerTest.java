@@ -1,8 +1,8 @@
-package com.codaconsultancy.casework.user;
+package com.codaconsultancy.casework.useradmin;
 
 import com.codaconsultancy.casework.common.BaseUnitTest;
 import com.codaconsultancy.casework.dto.user.UserDTO;
-import com.codaconsultancy.casework.service.Administration.AdministrationService;
+import com.codaconsultancy.casework.service.administration.AdministrationService;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.mockito.InjectMocks;

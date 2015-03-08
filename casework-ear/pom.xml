@@ -60,7 +60,7 @@
                 <inherited>true</inherited>
                 <version>7.4.Final</version>
                 <configuration>
-                    <skip>true</skip>
+                    <skip>false</skip>
                     <port>10199</port>
                 </configuration>
                 <executions>

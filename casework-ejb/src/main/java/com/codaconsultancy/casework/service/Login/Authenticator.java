@@ -1,4 +1,4 @@
-package com.codaconsultancy.casework.service.Login;
+package com.codaconsultancy.casework.service.login;
 
 import com.codaconsultancy.casework.model.user.dao.UserDAO;
 import com.codaconsultancy.casework.model.user.entity.User;
@@ -29,6 +29,7 @@ public class Authenticator implements Serializable {
     private String password;
 
     public boolean login() {
+
         User user = userDAO.findByUsername(username);
 
         if (user != null && user.verifyPassword(password)) {

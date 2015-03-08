@@ -1,4 +1,4 @@
-package com.codaconsultancy.casework.service.Login;
+package com.codaconsultancy.casework.service.login;
 
 import com.codaconsultancy.casework.model.user.entity.User;
 

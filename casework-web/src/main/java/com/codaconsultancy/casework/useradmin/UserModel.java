@@ -1,4 +1,4 @@
-package com.codaconsultancy.casework.user;
+package com.codaconsultancy.casework.useradmin;
 
 import com.codaconsultancy.casework.dto.user.UserDTO;
 
